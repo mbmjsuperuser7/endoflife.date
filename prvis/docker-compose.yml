@@ -1,0 +1,21 @@
+# prvis-ai — EOL MCP server
+services:
+  prvis-eol:
+    build:
+      context: .
+      dockerfile: prvis/Dockerfile
+    container_name: prvis-eol
+    restart: unless-stopped
+    ports:
+      - "8099:8099"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.1'
+    networks:
+      - agent-network
+
+networks:
+  agent-network:
+    external: true
